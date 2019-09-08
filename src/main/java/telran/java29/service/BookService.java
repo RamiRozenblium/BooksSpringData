@@ -7,4 +7,6 @@ public interface BookService {
 	public boolean addBook(BookDto bookDto);
 
 	public BookResponse getBookByIsbn(long isbn);
+
+	public Iterable<BookResponse> getBooksByAuthor(String author);
 }

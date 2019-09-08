@@ -30,4 +30,9 @@ public class BooksController {
 
 	}
 
+	@PostMapping("/authors/{author}")
+	public Iterable<BookResponse> getBooksByAuthor(@PathVariable String author ){
+		return bookService.getBooksByAuthor(author);
+	}
+
 }

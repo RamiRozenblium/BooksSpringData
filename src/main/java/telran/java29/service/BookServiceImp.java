@@ -2,7 +2,9 @@ package telran.java29.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -61,7 +63,7 @@ public class BookServiceImp implements BookService {
 			Publisher p = createPublisher(b);
 			publisher = publisherRepository.save(p);
 		}
-		
+
 		return publisher;
 
 	}
@@ -73,7 +75,7 @@ public class BookServiceImp implements BookService {
 
 	private Set<Author> checkAuthors(Set<AuthorDto> authors) {
 		Set<Author> auths = new HashSet<>();
-		
+
 		authors.stream().forEach(a -> {
 			Author author = authorRepository.findById(a.getName()).orElse(null);
 			if (author == null) {
@@ -82,9 +84,9 @@ public class BookServiceImp implements BookService {
 				auths.add(newAuthor);
 			}
 			auths.add(author);
-			
+
 		});
-		
+
 		return auths;
 	}
 
@@ -115,5 +117,15 @@ public class BookServiceImp implements BookService {
 	private AuthorResponse createAuthorDto(Author a) {
 
 		return AuthorResponse.builder().author(a.getName()).build();
+	}
+
+	@Override
+	public Iterable<BookResponse> getBooksByAuthor(String authorName) {
+		List<BookResponse> res = new ArrayList<>();
+		Author author = authorRepository.findById(authorName).get();
+		if (author != null) {
+			author.getBooks().forEach(b -> res.add(convertBookToBookDto(b)));
+		}
+		return res;
 	}
 }
