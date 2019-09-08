@@ -1,6 +1,5 @@
 package telran.java29.model;
 
-import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -13,19 +12,18 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Builder
 @EqualsAndHashCode(of = { "publisherName" })
 @Entity
-public class Publisher implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Publisher {
+	
 	@Id
 	String publisherName;
 	@OneToMany(mappedBy = "publisher")

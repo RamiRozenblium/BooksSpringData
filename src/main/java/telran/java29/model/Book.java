@@ -1,7 +1,5 @@
 package telran.java29.model;
 
-import java.io.Serializable;
-import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -9,20 +7,23 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@ToString
 @Setter
 @Builder
 @EqualsAndHashCode(of = { "isbn" })
 @Entity
-public class Book implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Book {
 	@Id
 	long isbn;
 	String title;
@@ -31,11 +32,11 @@ public class Book implements Serializable{
 	@ManyToOne
 	Publisher publisher;
 
-	public boolean addAuthor(Author author){
-		return authors.add(author);
-	}
-
-	public boolean addAllAuthor(Collection<Author> authors){
-		return authors.addAll(authors);
-	}
+//	public boolean addAuthor(Author author){
+//		return authors.add(author);
+//	}
+//
+//	public boolean addAllAuthor(Collection<Author> authors){
+//		return authors.addAll(authors);
+//	}
 }

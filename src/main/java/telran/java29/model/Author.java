@@ -1,6 +1,5 @@
 package telran.java29.model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -16,19 +15,17 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Builder
 @EqualsAndHashCode(of = { "name" })
 @Entity
-public class Author implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Author {
 	@Id
 	String name;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
