@@ -18,7 +18,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
+
 @Setter
 @Builder
 @EqualsAndHashCode(of = { "isbn" })

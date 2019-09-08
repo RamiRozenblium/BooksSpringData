@@ -61,6 +61,7 @@ public class BookServiceImp implements BookService {
 			Publisher p = createPublisher(b);
 			publisher = publisherRepository.save(p);
 		}
+		
 		return publisher;
 
 	}
@@ -72,6 +73,7 @@ public class BookServiceImp implements BookService {
 
 	private Set<Author> checkAuthors(Set<AuthorDto> authors) {
 		Set<Author> auths = new HashSet<>();
+		
 		authors.stream().forEach(a -> {
 			Author author = authorRepository.findById(a.getName()).orElse(null);
 			if (author == null) {
@@ -80,8 +82,9 @@ public class BookServiceImp implements BookService {
 				auths.add(newAuthor);
 			}
 			auths.add(author);
+			
 		});
-
+		
 		return auths;
 	}
 
