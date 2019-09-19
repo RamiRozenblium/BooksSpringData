@@ -4,7 +4,6 @@ import telran.java29.dto.AuthorResponse;
 import telran.java29.dto.BookDto;
 import telran.java29.dto.BookResponse;
 import telran.java29.dto.PublisherResponse;
-import telran.java29.model.Publisher;
 
 public interface BookService {
 

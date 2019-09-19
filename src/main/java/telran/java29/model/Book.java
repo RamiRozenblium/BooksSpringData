@@ -2,6 +2,7 @@ package telran.java29.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -13,7 +14,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,7 +27,7 @@ public class Book {
 	@Id
 	long isbn;
 	String title;
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	Set<Author> authors;
 	@ManyToOne
 	Publisher publisher;

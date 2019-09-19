@@ -55,7 +55,6 @@ public class BookServiceImp implements BookService {
 		Set<Author> authors = checkAuthors(bookDto.getAuthors());
 		Book book = Book.builder().isbn(bookDto.getIsbn()).title(bookDto.getTitle()).publisher(p).authors(authors)
 				.build();
-		System.out.println(book);
 		bookRepository.save(book);
 
 	}
@@ -177,7 +176,6 @@ public class BookServiceImp implements BookService {
 		if (author != null) {
 			Iterable<BookResponse> books = getBooksByAuthor(authorName);
 			StreamSupport.stream(books.spliterator(), false).forEach(b -> bookRepository.deleteById(b.getIsbn()));
-			authorRepository.delete(author);
 			return createAuthorResponse(author);
 		}
 
@@ -187,15 +185,16 @@ public class BookServiceImp implements BookService {
 	@Override
 	@Transactional
 	public PublisherResponse deletePublisher(String publisherName) {
-		List<PublisherResponse> publisherResponsesList = new ArrayList<>();
+
 		Publisher publisher = publisherRepository.findById(publisherName).orElse(null);
 		if (publisher != null) {
 			// find and delete all book by this publisher
 			List<Book> books = bookRepository.findByPublisherPublisherName(publisherName);
 			books.forEach(b -> {
-				publisherResponsesList.add(convertPublisherToPublisherResponse(b.getPublisher()));
+
 				b.getAuthors().stream().forEach(a -> deleteAuthor(a.getName()));
 			});
+			
 			publisherRepository.deleteById(publisherName);
 
 			return convertPublisherToPublisherResponse(publisher);
@@ -204,6 +203,7 @@ public class BookServiceImp implements BookService {
 	}
 
 	private PublisherResponse convertPublisherToPublisherResponse(Publisher publisher) {
+
 		return PublisherResponse.builder().publisherName(publisher.getPublisherName()).build();
 	}
 }

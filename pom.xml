@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>telran.java29</groupId>
-	<artifactId>BookSpringData</artifactId>
+	<artifactId>BookSpringDataORM</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>BookSpringData</name>
+	<name>BookSpringDataORM</name>
 	<description>SpringDataJpa</description>
 
 	<properties>
